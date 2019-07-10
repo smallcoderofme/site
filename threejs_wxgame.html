@@ -14,7 +14,7 @@
 <body>
 	
 	<div class="container-fluid">
-		<div class="row">
+		<div class="row mb-5">
 		 <div class="col-md-12 mb-3">
             <nav class="navbar navbar-expand-lg navbar-light bg-primary p-4">
             <span class="navbar-brand offset-md-2 uppercase font-weight-bold">smallcoderofme
@@ -46,6 +46,44 @@
             </div>
             </nav>
             </div>
+			<div class="col-md-3"></div>
+			<div class="col-md-6">
+				<div class="h3 text-center title border-bottom">ThreeJS 开发微信3D小游戏</div>
+				<p class="h5">先修改<span class="font-weight-bold">weapp-ddapter.js</span>文件的以下2处：</p>
+				<p class="h5">1.在变量document对象里增加以下函数</p>
+				<p class="h5">
+<pre class="code">
+	createElementNS: function createElementNS(nameSpace, tagName){
+		return this.createElement(tagName)
+	}
+</pre>
+				</p>
+				<p class="h5">1.在函数_createClass(XMLHTTPRequest, [{key:'abort'...}, ...])()参数中增加addEventListener函数</p>
+				<p class="h5">
+<pre class="code">
+	{
+	  key: 'addEventListener',
+	  value: function addEventListener(type, listener) {
+		if (typeof listener === 'function') {
+		  let event = { target: this }
+		  let that = this
+		  this['on' + type] = function () {
+			listener.call(that, event)
+		  }
+		}
+	  }
+	}
+</pre>
+				</p>
+				<p class="h5">自此微信小游戏就可以支持threejs了，下面开始做个简单的小游戏。</p>
+				<p class="h5">这个游戏需要用到两个js库，用以辅助Threejs。</p>
+				<p class="h5 font-weight-bold">1: Detector.js</p>
+				<p class="h5">Detector用来检测threejs的兼容性。</p>
+				<p class="h5 font-weight-bold">2: OrbitControls.js</p>
+				<p class="h5">OrbitControls用来作为threejs的轨道控制器。</p>
+				<p class="h5">额外的，如果想监测threejs的帧数，可以用stats.js。这里的小游戏Demo比较简单，就不用它了。</p>
+			</div>
+			<div class="col-md-3"></div>
 		</div>
 	</div>
 	<script src="js/nav.js"></script>
