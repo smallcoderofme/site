@@ -9,6 +9,12 @@
   -o-user-select:none; /* Opera私有属性 */
   user-select:none; /* CSS3属性 */
 }
+
+.th{
+	width: 200px;
+	height: 200px;
+}
+
 p{
 	margin-top: 20px;
 	margin-bottom: 20px;
@@ -23,10 +29,6 @@ p{
     border-radius: 10px;
 	background-color: #333333;
 	color: white;
-}
-
-.img-label {
-	
 }
 
 /*button {
