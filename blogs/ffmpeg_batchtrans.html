@@ -47,13 +47,75 @@
         <div class="col-md-3"></div>
         <div class="col-md-6">
             <div class="h3 text-center title border-bottom">FFmpeg+Python视频格式批量转换</div>
-            <p>
-                <div class="text-center"><img class="img-thumbnail img-fluid figure-img" alt="Ubuntu系统自带的vim编辑器" src="../img/vim.jpg"></div>
-                <span class="d-block text-center m-n1">Ubuntu18.04自带的Vim 8.0</span>
-            </p>
-		    <p class="h6">如果不是在云服务器上配置文件要用它，我是不太可能主动去学习这种上古时期的编辑器的，纵使其功能强大。</p>
-			<p class="h6">顺便提一下:在FreeBSD上还自带了一个ee编辑器，号称容易上手。编辑器快捷键会显示在编辑器上面，对新手友好。但我第一次用的时候也很不顺，没办法，习惯图形界面了。
-			已经没办法逃了，开始看下vim的使用。下面是记录的最基本的使用，能满足日常配置文件需要。</p>
+            <p class="h6">先在ffmpeg官网下载ffmpeg<a href="http://ffmpeg.org/"></a></p>
+			<p class="h6">其实用任何语言都可以，只要能读取一个文件夹，并获取里面的文件都可以。这里用python实现</p>
+<pre class="code">
+# -*- coding:utf-8 -*-
+#python version 3.6.5
+import subprocess
+import os
+
+file_index = 0
+def getExtendType(file_name):
+	extendType = ""
+	if not file_name is None:
+		flag = file_name.find(".")
+		extendType = file_name[flag+1:len(file_name)]
+	# print("extendType:",extendType)
+	return extendType
+
+def getFileName(file_name):
+	fileName = ""
+	if not file_name is None:
+		flag = file_name.find(".")
+		fileName = file_name[0:flag]
+	# print("extendType:",extendType)
+	return fileName
+
+def generator(file, size="1920x1080", hz="11025", bitrate="64k"):
+	fileName = "encode.bat"
+	with open(fileName,"wt") as outFile:
+		clearName = getFileName(file)
+		#-y -i %1 -vcodec libvpx -quality good -cpu-used 5 -b:v 700k -maxrate 700k -bufsize 1000k -qmin 10 -qmax 42 -vf scale=trunc(oh*a/2)*2:480 -threads 4 -acodec libvorbis -f webm %1.webm
+		# outFile.write("ffmpeg -i "+ file + " -b 1500k -vcodec libtheora -acodec libvorbis -ab 160000 -g 30 -s 640x360 "+ clearName+".ogv")
+		outFile.write("ffmpeg -i "+ file + " -c:v libx264 -s "+size+" -ar " +hz+ " -b:a "+bitrate+" -crf 28 " + clearName +".flv")
+		#outFile.write("ffmpeg -i "+ file + " -vcodec libvpx -quality good -cpu-used 5 -b:v 700k -maxrate 700k -bufsize 1000k -qmin 10 -qmax 42 -vf -threads 4 -acodec libvorbis -f webm "+ clearName+".mov")
+		outFile.close()
+	pass
+
+def init(file_dir):
+	fileList = []
+	vaild_file_list = []
+	for root, dirs, files in os.walk(file_dir):  
+		# print("root:",root) #当前目录路径  
+		# print("dirs:",dirs) #当前路径下所有子目录  
+		fileList = files
+	for file in fileList:
+		if getExtendType(file) == "mp4":
+			vaild_file_list.append(file)
+			pass
+	return vaild_file_list
+
+def buildEncode():
+	completeProcess = subprocess.run(["encode.bat"], stdout=subprocess.PIPE)
+	if completeProcess.returncode is 0:
+		os.remove("encode.bat")
+		if len(file_list)>0:
+			generator(file_list.pop())
+			buildEncode()
+		else:
+			print("所有视频转码完成！")
+	pass
+
+if __name__ == '__main__':
+	# completeProcess = subprocess.run(["encode.bat"], stdout=subprocess.PIPE)
+	# print(completeProcess.returncode)
+	file_list = init(os.getcwd())
+	print(file_list)
+	if len(file_list) > 0:
+		generator(file_list.pop())
+		buildEncode()
+</pre>
         <div class="col-md-3"></div>
     </div>
 </div>
