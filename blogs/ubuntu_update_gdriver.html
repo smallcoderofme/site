@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>smallcoderofme</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 mb-3">
+            <nav class="navbar navbar-expand-lg navbar-light bg-primary p-4">
+            <span class="navbar-brand offset-md-2 uppercase font-weight-bold">smallcoderofme
+            </span>
+                <button class="navbar-toggler" type="button"
+                        data-toggle="collapse"
+                        data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav font-weight-bold">
+                        <li class="nav-item nav-size">
+                            <a class="nav-link text-dark" href="../index.html">主页</a>
+                        </li>
+                        <li class="nav-item nav-size">
+                            <a class="nav-link text-dark" href="../blog.html">博客</a>
+                        </li>
+                        <li class="nav-item nav-size">
+                            <a class="nav-link text-dark" href="../bookmark.html">收藏</a>
+                        </li>
+                        <li class="nav-item nav-size">
+                            <a class="nav-link text-dark" href="#">About</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="h3 text-center title border-bottom">ubuntu安装，更新NVIDIA驱动</div>
+            <p class="h6">Linux的NVIDIA图形驱动是一个拓展名为.run的可执行文件</p>
+            <p>
+                <div class="text-center"><img class="img-thumbnail img-fluid figure-img" alt="Ubuntu系统自带的vim编辑器" src="../img/nvidia_driver.png"></div>
+                <span class="d-block text-center m-n1">Linux版的NVIDIA图形驱动</span>
+            </p>
+            <p class="h6">安装图形驱动是很容易的，就像执行普通的命令一样。</p>
+<pre class="code h6">
+sudo sh /home/sunshuai/tools/NVIDIA-Linux-x86_64-390.48.run
+</pre>
+<p>当然了，驱动一般都是在root权限下安装的。</p>
+            <p class="h6">安装驱动是很容易的，但是ubuntu系统会自带一个通用的图形驱动，安装NVIDIA驱动必须把默认的
+            这个禁掉，身世有时侯，ubuntu系统自己进行一些组件更新后会把这个默认的系统给更新回来，此时，系统每次重启又都会启动默认的这个系统驱动。默认的系统驱动是intel核显的驱动，这就是为什么非这么大劲替换掉它的原因。我有NVIDIA驱动独显为何不用，用你个核显。</p>
+            <p class="h6">
+                此时需要以root登陆，初始化系统和终止GNOME显示管理器gmd
+            </p>
+            <pre class="code h6">
+init 3
+/etc/init.d/gdm3 stop
+            </pre>
+            <p class="h6">
+                接下来就可以安装图形驱动了。如果是系统更新后的安装，此时电脑上是有驱动的，这就需要把原来的卸载了。
+                <span class="font-weight-bold text-primary">apt-get remove  nvidia* --purge</span>
+            </p>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
