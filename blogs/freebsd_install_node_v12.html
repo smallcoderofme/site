@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>smallcoderofme</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 mb-3">
+            <nav class="navbar navbar-expand-lg navbar-light bg-primary p-4">
+            <span class="navbar-brand offset-md-2 uppercase font-weight-bold">smallcoderofme
+            </span>
+                <button class="navbar-toggler" type="button"
+                        data-toggle="collapse"
+                        data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav font-weight-bold">
+                        <li class="nav-item nav-size">
+                            <a class="nav-link text-dark" href="../index.html">主页</a>
+                        </li>
+                        <li class="nav-item nav-size">
+                            <a class="nav-link text-dark" href="../blog.html">博客</a>
+                        </li>
+                        <li class="nav-item nav-size">
+                            <a class="nav-link text-dark" href="../bookmark.html">收藏</a>
+                        </li>
+                        <li class="nav-item nav-size">
+                            <a class="nav-link text-dark" href="#">About</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="h3 text-center title border-bottom">FreeBSD 11.1安装NodeJS v12失败</div>
+            <p class="h5 font-weight-bold">安装NodeJS:</p>
+			<p class="h6">这里用懒惰的办法，直接安装二进制：pkg install node（ports源码安装实在太慢了）</p>
+			<p class="h6">安装过程是没有任何问题的，但是我想 <span class="font-weight-bold ml-2 mr-2">node -v</span>看下版本测试是否真的安装成功的时候。</p>
+			<p class="h6">然后就出事了：<span class="text-danger">Undefined symbol "nghttp2_submit_origin" nodejs FreeBSD</span></p>
+			<p class="h6">我搜了许久都没有与我情况类似的，哎！小众的劣势凸显。最终我还是发挥了FreeBSD的优势：官方的文档异常详细，
+			最后找到了如下图所示</p>
+			<p>
+                <div class="text-center"><img class="img-thumbnail img-fluid figure-img" alt="node12依赖的包" src="../img/freebsd_node.jpg"></div>
+                <span class="d-block text-center m-n1">node12依赖的包</span>
+            </p>
+			<p class="h6">其实真正导致这个问题的是缺少 <span class="font-weight-bold ml-2 mr-2">libnghttp2</span>但是我看到自带python 版本是python27-2.7.13，为了不出其他的幺蛾子，索性把依赖的库都更新到最新了。</p>
+			<p class="h6">把依赖的包依次安装或更新，问题瞬间解决。完美！</p>
+		</div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
