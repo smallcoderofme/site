@@ -56,26 +56,11 @@ import subprocess
 import os
 
 file_index = 0
-def getExtendType(file_name):
-	extendType = ""
-	if not file_name is None:
-		flag = file_name.find(".")
-		extendType = file_name[flag+1:len(file_name)]
-	# print("extendType:",extendType)
-	return extendType
-
-def getFileName(file_name):
-	fileName = ""
-	if not file_name is None:
-		flag = file_name.find(".")
-		fileName = file_name[0:flag]
-	# print("extendType:",extendType)
-	return fileName
 
 def generator(file, size="1920x1080", hz="11025", bitrate="64k"):
 	fileName = "encode.bat"
 	with open(fileName,"wt") as outFile:
-		clearName = getFileName(file)
+		clearName = os.path.basename(file)
 		#-y -i %1 -vcodec libvpx -quality good -cpu-used 5 -b:v 700k -maxrate 700k -bufsize 1000k -qmin 10 -qmax 42 -vf scale=trunc(oh*a/2)*2:480 -threads 4 -acodec libvorbis -f webm %1.webm
 		# outFile.write("ffmpeg -i "+ file + " -b 1500k -vcodec libtheora -acodec libvorbis -ab 160000 -g 30 -s 640x360 "+ clearName+".ogv")
 		outFile.write("ffmpeg -i "+ file + " -c:v libx264 -s "+size+" -ar " +hz+ " -b:a "+bitrate+" -crf 28 " + clearName +".flv")
@@ -91,7 +76,7 @@ def init(file_dir):
 		# print("dirs:",dirs) #当前路径下所有子目录  
 		fileList = files
 	for file in fileList:
-		if getExtendType(file) == "mp4":
+		if os.path.splitext(file)[1] == ".mp4":
 			vaild_file_list.append(file)
 			pass
 	return vaild_file_list
