@@ -49,7 +49,7 @@
             <div class="h3 text-center title border-bottom">FFmpeg+Python视频格式批量转换</div>
             <p class="h6">先在ffmpeg官网下载ffmpeg<a href="http://ffmpeg.org/"></a></p>
 			<p class="h6">其实用任何语言都可以，只要能读取一个文件夹，并获取里面的文件都可以。这里用python实现</p>
-<pre class="code">
+<pre class="code"> <code class="python">
 # -*- coding:utf-8 -*-
 #python version 3.6.5
 import subprocess
@@ -99,7 +99,7 @@ if __name__ == '__main__':
 	print(file_list)
 	if len(file_list) > 0:
 		generator(file_list.pop())
-		buildEncode()
+		buildEncode()</code>
 </pre>
         <div class="col-md-3"></div>
     </div>
@@ -107,5 +107,7 @@ if __name__ == '__main__':
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.16.2/build/styles/default.min.css">
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.16.2/build/highlight.min.js"></script>
 </body>
 </html>
