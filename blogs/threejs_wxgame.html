@@ -53,7 +53,7 @@
 				<p class="h6">先修改<span class="font-weight-bold">weapp-ddapter.js</span>文件的以下2处：</p>
 				<p class="h6">1.在变量document对象里增加以下函数</p>
 				<p class="h6">
-<pre class="code"> <code class="javascript">
+<pre class="code"> <code class="lang-javascript">
 createElementNS: function createElementNS(nameSpace, tagName){
 	return this.createElement(tagName)</code>
 }
@@ -61,7 +61,7 @@ createElementNS: function createElementNS(nameSpace, tagName){
 				</p>
 				<p class="h6">1.在函数_createClass(XMLHTTPRequest, [{key:'abort'...}, ...])()参数中增加addEventListener函数</p>
 				<p class="h6">
-<pre class="code"> <code class="javascript">
+<pre class="code"> <code class="lang-javascript">
 {
   key: 'addEventListener',
   value: function addEventListener(type, listener) {
@@ -84,7 +84,7 @@ createElementNS: function createElementNS(nameSpace, tagName){
 				<p class="h6">OrbitControls用来作为threejs的轨道控制器。</p>
 				<p class="h6">额外的，如果想监测threejs的帧数，可以用stats.js。这里的Demo比较简单，就不用它了。</p>
 				<p class="h6 font-weight-bold">初始化先检测webgl的兼容性</p>
-<pre class="code">
+<pre class="code"><code class="lang-javascript">
 if (g.Detector.webgl) {
 	this.scene = new THREE.Scene();
 	this.camera = new THREE.PerspectiveCamera( 75, g.innerWidth/g.innerHeight, 0.1, 1000 );
@@ -94,7 +94,7 @@ if (g.Detector.webgl) {
 	//如果不兼容，需要显示出warning提示
 	var warning = Detector.getWebGLErrorMessage();
 	...
-}
+}</code>
 </pre>
 				<p class="h6">这里的小游戏场景，按钮，为了省事通通以立方体cube代替。食物cube在场景随机产生，同时设置随机颜色。
 				在操作上，设定为在场景cube的6个面各有一个按钮cube，通过点击这6个按钮控制小蛇在空间的移动方向。为了方便观察，我们
@@ -119,5 +119,6 @@ if (g.Detector.webgl) {
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.16.2/build/styles/default.min.css">
     <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.16.2/build/highlight.min.js"></script>
+    <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
 </body>
 </html>
