@@ -73,7 +73,7 @@
 var server = restify.createServer();
     </pre>
     <p class="h6">添加框架自带的一些中间件</p>
-    <pre class="h6 code"> <code class="javascript">
+    <pre class="h6 code"> <code class="lang-javascript">
 server.pre(restify.plugins.pre.userAgentConnection());
 server.use(restify.plugins.bodyParser());
 server.use(restify.plugins.acceptParser(server.acceptable));
@@ -83,7 +83,7 @@ server.use(restify.plugins.queryParser());
 server.use(restify.plugins.urlEncodedBodyParser());</code>
     </pre>
     <p class="h6">添加一些的header</p>
-    <pre class="h6 code"> <code class="javascript">
+    <pre class="h6 code"> <code class="lang-javascript">
 server.use(function(req, res, next){
     res.header("Access-Control-Allow-Origin", 
         "http://127.0.0.1:4200");
@@ -101,7 +101,7 @@ server.use(function(req, res, next){
 });</code>
     </pre>
     <p class="h6">CRUD</p>
-    <pre class="h6 code"> <code class="javascript">
+    <pre class="h6 code"> <code class="lang-javascript">
 server.post('/add', function(req, res, next){});
 server.get('/get', function(req, res, next){});
 server.put('/put', function(req, res, next){});
@@ -116,5 +116,6 @@ server.del('/del', function(req, res, next){});</code>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.16.2/build/styles/default.min.css">
 <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.16.2/build/highlight.min.js"></script>
+<script type="text/javascript">hljs.initHighlightingOnLoad();</script>
 </body>
 </html>
