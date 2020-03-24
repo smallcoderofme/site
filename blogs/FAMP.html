@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>smallcoderofme</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 mb-3">
+            <nav class="navbar navbar-expand-lg navbar-light bg-primary p-4">
+            <span class="navbar-brand offset-md-2 uppercase font-weight-bold">smallcoderofme
+            </span>
+                <button class="navbar-toggler" type="button"
+                        data-toggle="collapse"
+                        data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav font-weight-bold">
+                        <li class="nav-item nav-size">
+                            <a class="nav-link text-dark" href="../index.html">主页</a>
+                        </li>
+                        <li class="nav-item nav-size">
+                            <a class="nav-link text-dark" href="../blog.html">博客</a>
+                        </li>
+                        <li class="nav-item nav-size">
+                            <a class="nav-link text-dark" href="../bookmark.html">收藏</a>
+                        </li>
+                        <li class="nav-item nav-size">
+                            <a class="nav-link text-dark" href="#">About</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <h3 class="h3 text-center title border-bottom">FAMP架构的建立20141115</h3>
+		    <p>LAMP架构早就闻名遐迩了，所谓的LAMP架构就是指Linux+Apache+MySQL+PHP(或Python或Perl)，是一组常用来搭建动态网站或者服务器的开源软件，本身都是各自独立的程序，但是因为常被放在一起使用，拥有了越来越高的兼容度，共同组成了一个强大的Web应用程序平台。
+		    显然LAMP名字来源于其中每个程序的第一个字母，而这每个程序都是开源软件：Linux是开源的操作系统，Apache是最通用的网络服务器，MySQL是带有基于网络管理附加工具的关系数据库，PHP是流行的对象脚本语言。
+		    其实后三者都可以跨平台安装使用，如果将Linux系统换做Windows操作系统，那就叫WAMP架构，而如果把Linux换做FreeBSD系统，则叫做FAMP架构。可以说FAMP具有和LAMP同样的优势。</p>
+
+		    <p>FreeBSD的软件安装大致分为三种：
+		    1 pkg add直接安装可执行程序。
+		    2 ports编译安装。
+		    3 源码安装。
+		    以下的安装都是在FreeBSD 10.1版本上选择第二种安装方式即ports安装完成，其实选择pkg方式的话,安装后的配置过程也大致相同。</p>
+
+			<h3 class="h3 text-center title border-bottom">一 Apache安装：</h3>
+		    <p>Apache 是 UNIX 系统中普遍使用的WWW服务器软件。根据Netcraft的统计 (http://news.netcraft.com/archives/web_server_survey.html)，目前因特网中，有超过百分之六十的服务器是使用Apache来提供网页浏览的服务。Apache可以说是目前世界上使用人数最多的网页服务器软件，它不仅可以在 FreeBSD、UNIX、Linux 中运行，也可以安装在 Windows 操作系统中。
+		    Apache和FreeBSD一样，在软件版本上也有多个分支，FB10.1中目前只保留了2.2和2.4版本。FreeBSD缺省使用apache-2.4版本。
+		    在FreeBSD上安装Apache软件非常方便,以下使用ports方式安装:</p>
+		   
+		    <p class="bg-dark">
+	    	# cd /usr/ports/www/apache24
+		    # make install clean</p>
+
+		    以下是一些在实际使用中常常会遇到的问题：
+			1) 配置文件的位置：
+			在FreeBSD中位于/usr/local/etc/apache24/httpd.conf，在其他版本可能位置和名称有所不同。
+			2) 缺省的主目录：
+			/usr/local/www/apache24/data
+			系统安装好后,我在该目录下写入了一个简单的index.html文件,只一句:
+			# nano index.html
+			This is a FreeBSD server
+			然后在客户端检查是否输出正确。
+			3) log文件的位置
+			log文件的作用是很大的，Apache有二个log文件，一个是所有登陆本apache服务器的IP记录，/var/log/httpd- access.log，文件记录了登陆的ip，时间，浏览器类型等；另一个是联机错误记录文件， /var/log/httpd-error.log，这个文件对于调试apache参数是很有作用的。两个文件都是文本文件，可以由nano等文本编辑器来浏览、编辑，记录文件的位置及文件名是由 httpd.conf中的相应配置来改变。
+			4) 启动、停止和重新启动httpd服务器的运行：
+			#apachectl start(stop restart graceful)
+			这个命令比较有用，尤其是在修改配置文件之后。
+			5) 开机自动启动apache24服务：
+			需要编辑/etc/rc.conf文件，在其中加入以下语句:
+			apache24_enable="YES"
+			6) 自动支持中文的问题
+			网页的缺省字符集有参数 AddDefaultCharset ISO-8859-1
+			这时候在浏览器浏览中文网页的时候，会乱码，需要手动设置编码方式为GBK或GB2312才能显示中文
+			去掉注释，修改为AddDefaultCharset GB2312就可以了。
+			7) Apache状态信息
+			在安装完 Apache 后，我们需要不断了解服务器的系统各方面的情况。Apache2内建了server-status及server-info二种查看服务器信息的方法。 server-status是指服务器状态信息，我们可以了解Apache目前运行的情形，包括占用的系统资源、目前联机数量等。server-info 主要是显示Apache的版本、加载的模块信息等。
+			为使用这两项功能，我们必须先修改 httpd.conf。
+			首先要把ExtendedStatus On前面的注释去掉。
+			然后分别找到<Location>和<Location>这两段，把两段内前面的注释都去掉，并设置好访问权限。不**安全的话，可以设置allow from all.
+			然后就可以在浏览器以http://hostname/server-info访问了。
+			个人用户目录的问题：
+			修改主配置文件，注释掉#UserDir public_html这句，再在用户test的主目录/home/test下面创建一个index.html文件，就可以浏览：
+			http://yourip/~test了。
+			9) 其他一些我认为比较重要的配置参数：
+			ServerRoot:指出服务器保存其配置、出错和日志文件等的根目录。
+			Listen:允许你绑定Apache服务到指定的IP地址和端口上，以取代默认值
+			DocumentRoot:你的文档的根目录。默认情况下，所有的请求从这个目录进行应答。
+			HostnameLookups：指定记录用户端的名字还是IP地址
+
+			    值得说明的是，过去的开源WWW服务器几乎是Apache一统天下，近年来，则有nginx逐渐流行，也是值得考虑部署的好东西。
+
+			二 PHP的安装：
+			当前的FB10.1的ports中有多个php版本，即php55、php56和php5(缺省使用php-5.4版本)，所以选择安装PHP5。
+			安装：
+			# cd /usr/ports/lang/php5
+			# make install clean
+
+			需要注意的是，这样只安装了php5，但是现在的apache24还不能解析和支持php，还需要：
+			# cd /usr/ports/www/mod_php5
+			# make install clean
+
+			编译安装完成之后，还需要在apache的配置文件(文件位置见上)中加入以下语句：
+			DirectoryIndex index.php index.html
+			<FilesMatch "\.php$">
+			    SetHandler application/x-httpd-php
+			</FilesMatch>
+			<FilesMatch "\.phps$">
+			    SetHandler application/x-httpd-php-source
+			</FilesMatch>
+
+			注意记住每次修改apache的配置文件后都要重启apache以使之生效：
+			# apachectl restart
+
+			现在在/usr/local/www/apache24/data下编写测试文件wen1.php文件如下：
+			<？php
+			phpinfo()
+			?>
+			再到客户端去打开该文件，如果出现php5的相关信息页面，则表示安装成功。
+
+
+			三 MySQL的安装：
+			FB7中的MySQL有三个版本，分别为5.1 5.5和5.6，下面我安装常用的5.5版本：
+			# cd /usr/ports/databases/mysql55-server
+			# make install clean
+
+			要设置开机就自动启动的话，需要编辑/etc/rc.conf文件，在其中加入：
+			mysql_enable="YES"
+
+			因为缺省情况下MySQL的管理员帐户的密码为空，很不安全，所以修改管理员帐号密码这一步骤最好不要省略：
+			# /usr/local/bin/mysqladmin -u root -p password '123456'
+
+			衡量你的MySQL服务器是否正常启动的方法之一是在命令行下面运行mysql的客户端命令(ports安装mysql-server的话，会一并连mysql-client也安装的)：
+			# mysql
+			如果没有出错的提示而显示出mysql客户端控制台(如下)则表明Mysql服务器正常运行了：
+			# mysql
+			Welcome to the MySQL monitor. Commands end with ; or \g.
+			Your MySQL connection id is 3
+			Server version: 5.1.24-rc FreeBSD port: mysql-server-5.1.24_1
+			Type 'help;' or '\h' for help. Type '\c' to clear the buffer.
+			mysql>
+
+			四 安装php5-mysql
+			现在php和mysql都安装好了，但现在的php5还不能操作Mysql数据库，或者说现在的php还缺乏mysql的驱动，另一方面，现在的php还有相当多重要的也是常用的扩展没有安装，这两个问题可以一并解决，就是安装ports里面的php5-extensions:
+			# cd /usr/ports/lang/php5-extensions
+			# make install clean
+			# apachectl graceful
+			当前的php5-extensions里的选择一共有65个，我就不一一列举，一般至少如mysql GD zlib iconv等肯定是要选择的。
+			当安装完毕之后，再次运行上面所述的测试文件，发现现在的内容就很多了。
+
+			五 其他可选的软件：
+			phpmyadmin
+			phpmyadmin就是一个操作MySQL数据库的Web界面，适合于不熟悉SQL语法的懒人们：
+			# cd /usr/ports/databases/phpmyadmin
+			# make install clean
+		</div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
