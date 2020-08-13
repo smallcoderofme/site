@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>smallcoderofme</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
@@ -73,7 +72,7 @@
 var server = restify.createServer();
     </pre>
     <p class="h6">添加框架自带的一些中间件</p>
-    <pre class="h6 code"> <code class="lang-javascript">
+    <pre class="h6 code"><code class="lang-javascript">
 server.pre(restify.plugins.pre.userAgentConnection());
 server.use(restify.plugins.bodyParser());
 server.use(restify.plugins.acceptParser(server.acceptable));
@@ -83,7 +82,7 @@ server.use(restify.plugins.queryParser());
 server.use(restify.plugins.urlEncodedBodyParser());</code>
     </pre>
     <p class="h6">添加一些的header</p>
-    <pre class="h6 code"> <code class="lang-javascript">
+    <pre class="h6 code"><code class="lang-javascript">
 server.use(function(req, res, next){
     res.header("Access-Control-Allow-Origin", 
         "http://127.0.0.1:4200");
@@ -111,11 +110,11 @@ server.del('/del', function(req, res, next){});</code>
         <div class="col-md-3"></div>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.16.2/build/styles/default.min.css">
-<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.16.2/build/highlight.min.js"></script>
-<script type="text/javascript">hljs.initHighlightingOnLoad();</script>
+    <script src="../js/libs/jquery.min.js"></script>
+    <link rel="stylesheet" href="../js/libs/bootstrap.min.css">
+    <script src="../js/libs/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../js/libs/default.min.css">
+    <script src="../js/libs/highlight.min.js"></script>
+    <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
 </body>
 </html>
