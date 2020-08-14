@@ -8,13 +8,13 @@ subtitle: ''
 description: '满纸荒唐言，一腔牢骚话'
 keywords:
 author: svensma
-language: en
+language: zh-CN
 timezone: ''
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://yoursite.com
-root: /site/
+root: /myblogs.github.io/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -104,5 +104,5 @@ theme: landscape
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: https://github.com/smallcoderofme/site.git
+  repository: https://github.com/smallcoderofme/myblogs.github.io.git
   branch: master
