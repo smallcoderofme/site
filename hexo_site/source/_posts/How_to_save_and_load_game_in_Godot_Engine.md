@@ -1,6 +1,10 @@
 ---
 title: How to save and load game in Godot Engine
 date: 2020-08-18 11:13:29
+categories: 
+- game dev
+tags:
+- godot
 ---
 
 *[原文地址：How to save and load game in Godot Engine](http://codetuto.com/2017/08/save-load-game-godot-engine/)*
@@ -18,7 +22,7 @@ Browse our two scripts and set their names as shown below.
 To save and load game in Godot engine, we need to create some scripts. We will create this once and can be used in all of our game. So let us jump into scripting.
 
 ### User Data Manager and Game Manager scripting
-The user_data_manager.gd script looks like:
+The **user_data_manager.gd** script looks like:
 
 ``` python
 extends Node2D
@@ -64,7 +68,7 @@ func get_data(key):
     return _user_data["data"][key]
 ```
 
-To understand the above script we have to look into the game_manager.gd script:
+To understand the above script we have to look into the **game_manager.gd** script:
 
 ``` python
 extends Node2D

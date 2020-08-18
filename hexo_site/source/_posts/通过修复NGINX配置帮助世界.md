@@ -1,6 +1,10 @@
 ---
 title: 通过修复NGINX配置帮助世界
 date: 2020-08-17 16:29:17
+categories: 
+- web
+tags:
+- nginx
 ---
 
 *[原文地址：help-the-world-by-healing-your-nginx-configuration](https://www.nginx.com/blog/help-the-world-by-healing-your-nginx-configuration/)*
