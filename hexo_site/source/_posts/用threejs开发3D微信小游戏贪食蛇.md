@@ -1,6 +1,10 @@
 ---
 title: 用threejs开发3D微信小游戏贪食蛇
 date: 2020-08-14 16:08:35
+categories: 
+- web
+tags:
+- wexin
 ---
 
 现在在github已经有现成的threejs的weapp-ddapter.js了。但我早前做得时候没有找到，只找到修改weapp-ddapter的方式。

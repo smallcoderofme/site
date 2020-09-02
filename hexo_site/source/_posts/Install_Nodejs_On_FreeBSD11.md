@@ -1,6 +1,10 @@
 ---
 title: Install Nodejs On FreeBSD 11.1
 date: 2020-08-14 15:10:21
+categories: 
+- web
+tags:
+- nodejs
 ---
 
 ### 安装  NodeJS:
@@ -14,5 +18,5 @@ pkg install node
 <font color=#dd0000>Undefined symbol "nghttp2_submit_origin" nodejs FreeBSD</font>
 好在FreeBSD的优势就是文档详细，在官方文档找到如下：
 <img src="/myblogs.github.io/2020/08/14/Install_Nodejs_On_FreeBSD11/freebsd_node.jpg">
-其实真正导致这个问题的是缺少 libnghttp2但是我看到我的系统自带python 版本是python27-2.7.13，为了不出其他的幺蛾子，索性把依赖的库都到所需要的版本了。
+其实真正导致这个问题的是缺少 libnghttp2但是我看到我的系统自带python 版本是python27-2.7.13，为了不出其他的幺蛾子，索性把依赖的库都升级到requires的版本了。
 把依赖的包依次安装或更新，问题瞬间解决。完美
