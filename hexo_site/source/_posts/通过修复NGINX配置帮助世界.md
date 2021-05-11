@@ -2,9 +2,9 @@
 title: 通过修复NGINX配置帮助世界
 date: 2020-08-17 16:29:17
 categories: 
-- web
+- Web
 tags:
-- nginx
+- Nginx
 ---
 
 *[原文地址：help-the-world-by-healing-your-nginx-configuration](https://www.nginx.com/blog/help-the-world-by-healing-your-nginx-configuration/)*
@@ -126,14 +126,14 @@ access_log /var/log/nginx/access.log combined buffer=512k flush=1m;
 location /download/ {
     limit_rate 50k;
 }
-```      
+```
 您可能还希望仅对较大的文件进行速率限制，这可以使用limit_rate_after指令进行。在此示例中，每个文件（来自任何目录）的前500 KB都不受速度限制地进行传输，之后的所有内容均以50 KB / s为上限。这样可以加快网站关键部分的交付速度，同时降低其他部分的速度。
 ``` bash
 location / {
     limit_rate_after 500k;
     limit_rate 50k;
 }
-```     
+```
 请注意，速率限制适用于浏览器和NGINX之间的单个HTTP连接，因此请不要阻止用户使用下载管理器来解决速率限制。 最后，您还可以限制到服务器的并发连接数或请求速率。有关详细信息，请参见我们的文档。
 
 ### 摘要

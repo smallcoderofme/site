@@ -2,9 +2,9 @@
 title: Install Nodejs On FreeBSD 11.1
 date: 2020-08-14 15:10:21
 categories: 
-- web
+- Web
 tags:
-- nodejs
+- Nodejs
 ---
 
 ### 安装  NodeJS:

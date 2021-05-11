@@ -2,9 +2,9 @@
 title: cowboy websocket (boardcast)
 date: 2020-11-09 16:25:23
 categories: 
-- erlang
+- Erlang
 tags:
-- web
+- Web
 ---
 
 

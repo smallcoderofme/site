@@ -2,9 +2,9 @@
 title: How to save and load game in Godot Engine
 date: 2020-08-18 11:13:29
 categories: 
-- game dev
+- Game Dev
 tags:
-- godot
+- Godot
 ---
 
 *[原文地址：How to save and load game in Godot Engine](http://codetuto.com/2017/08/save-load-game-godot-engine/)*

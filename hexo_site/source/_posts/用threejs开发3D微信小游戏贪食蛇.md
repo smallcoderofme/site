@@ -2,9 +2,9 @@
 title: 用threejs开发3D微信小游戏贪食蛇
 date: 2020-08-14 16:08:35
 categories: 
-- web
+- Web
 tags:
-- wexin
+- Wexin
 ---
 
 现在在github已经有现成的threejs的weapp-ddapter.js了。但我早前做得时候没有找到，只找到修改weapp-ddapter的方式。
@@ -37,6 +37,7 @@ Detector用来检测threejs的兼容性。
 OrbitControls用来作为threejs的轨道控制器。
 额外的，如果想监测threejs的性能帧数，可以用stats.js。这里的Demo比较简单，就不用它了。
 初始化先检测webgl的兼容性
+
 ``` javascript
 if (g.Detector.webgl) {
 	this.scene = new THREE.Scene();

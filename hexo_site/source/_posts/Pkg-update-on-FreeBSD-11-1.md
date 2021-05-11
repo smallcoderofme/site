@@ -2,9 +2,9 @@
 title: Pkg update on FreeBSD 11.1
 date: 2020-10-19 14:29:28
 categories: 
-- erlang
+- Erlang
 tags:
-- os
+- OS
 ---
 
 今天在安装erlang时出现以下问题：
@@ -31,4 +31,4 @@ pkg update -f
 vi /etc/freebsd-update.conf # change .org to .cn
 freebsd-update -r 12.1-RELEASE upgrade
 freebsd-update install
-``` 
+```

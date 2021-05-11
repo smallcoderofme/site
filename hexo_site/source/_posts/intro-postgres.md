@@ -4,7 +4,7 @@ date: 2020-09-22 09:46:32
 categories: 
 - SQL
 tags:
-- postgresql
+- Postgresql
 ---
 
 #### 创建数据库：
