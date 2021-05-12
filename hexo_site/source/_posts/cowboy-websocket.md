@@ -10,24 +10,38 @@ tags:
 
 ### websocket连接管理,这里存储在ets里面:
 ``` erlang
--module (gate_cb).
--export ([init/0, add/1, lookup/0, remove/1, dispose/0]).
+-module (conn_ets).
+-export ([init/0, insert/2, lookup/1, remove_by_id/1, remove_by_pid/1, get_online_num/0]).
+
+-define(TABLE_ID, ?MODULE).
 
 init() ->
-%% 注意public，否则只能在主线程添加和删除
-	ets:new(gate_conn, [bag, public, named_table]). 
+	ets:new(?TABLE_ID, [bag, public, named_table]),
+	ok.
 
-add( Pid ) when is_pid(Pid) ->
-	ets:insert(gate_conn, { gate, Pid }).
+%% login success insert id and pid.
+insert( GId, Pid ) when is_pid(Pid) ->
+	ets:insert(?TABLE_ID, { GId, Pid }).
 
-lookup() ->
-	ets:lookup(gate_conn, gate).
+lookup(GId) ->
+	ets:lookup(?TABLE_ID, GId).
 
-remove( Pid ) when is_pid(Pid) ->
-	ets:delete_object(gate_conn, {gate, Pid}).
+%% get pid by id
+% lookup(GId) ->
+% 	case ets:lookup(?TABLE_ID, GId) of
+% 		[{GId, Pid}] -> {ok, {GId, Pid}};
+% 		[]			-> {error, not_found}
+% 	end.
 
-dispose() ->
-	ets:delete(gate_conn).
+%% logout remove online user
+remove_by_id(GId) ->
+	ets:match_delete(?TABLE_ID, {GId, '_'}).
+
+remove_by_pid(Pid) ->
+    ets:match_delete(?TABLE_ID, {'_', Pid}).
+
+get_online_num() ->
+	length(ets:tab2list(?TABLE_ID)).
 ```
 
 ### websocket 回调模块:
@@ -38,24 +52,31 @@ dispose() ->
 -export([websocket_init/1]).
 -export([websocket_handle/2]).
 -export([websocket_info/2]).
-% -export ([websocket_terminate/3]).
--export ([terminate/3]).
+-export([terminate/3]).
+
+% -record(state, {pid, id}).
 
 init(Req, Opts) ->
 	#{pid := Pid} = Req,
-	gate_cb:add(Pid),
+	conn_ets:insert("chat_room", Pid),
 	{cowboy_websocket, Req, Opts}.
 
 websocket_init(State) ->
+	% erlang:start_timer(1000, self(), <<"Hello!">>),
 	{[{text, <<"Immediately Hello!">>}], State}.
+	% self()! {[{text, <<"Hello Response">>}], State},
+	% {[], State}.
 
 websocket_handle({text, Msg}, State) ->
 	lists:foreach(
 		fun({_, CurrPid}) -> 
+			% io:format("Boardcast: ~w ~n", [CurrPid])
 			CurrPid ! { chat, <<"Boardcast message: ", Msg/binary>> }
 		end,
-		gate_cb:lookup()
+		conn_ets:lookup("chat_room")
 		),
+	% io:format("Terminate reason: ~w ~n", [conn_ets:lookup("chat_room")]),
+	% self() ! { chat, <<"Boardcast message: ", Msg/binary>> },
 	{[], State};
 
 websocket_handle(_Data, State) ->
@@ -72,9 +93,9 @@ websocket_info({timeout, _Ref, Msg}, State) ->
 websocket_info(_Info, State) ->
 	{[], State}.
  
-terminate(Reason, PartialReq, State) ->
-	io:format("terminate Reason: ~w, PartialReq: ~w, State: ~w , Pid: ~w ~n", [Reason, PartialReq, State, self()]),
-	gate_cb:remove(self()),
+terminate(Reason, _PartialReq, _State) ->
+	io:format("Terminate reason: ~w ~w ~n", [Reason, self()]),
+	conn_ets:remove_by_pid(self()),
 	% case Reason of
 	% 	{remote, 1001, _} ->	
 	% 		io:format("refresh.~n");
@@ -88,15 +109,29 @@ terminate(Reason, PartialReq, State) ->
 
 ### 最后别忘了在启动时初始化:
 ``` erlang
-	... ...
-	Dispatch = cowboy_router:compile([
+-module(chess_app_app).
+-behaviour(application).
+
+-export([start/2]).
+-export([stop/1]).
+
+start(_Type, _Args) ->
+	conn_ets:init(),
+    Dispatch = cowboy_router:compile([
         {'_', [
-            % {"/", hello_handler, []},
-            {"/", cowboy_static, {file, "static/ws.html"}},
-            {"/websocket", ws_h, []}
-            ]}
+                {"/", home_handler, []},
+%%                 {"/[...]", cowboy_static, {dir, "priv/"}},
+                {"/index", cowboy_static, {file, "priv/index.html"}},
+                {"/ws", cowboy_static, {file, "priv/ws.html"}},
+                {"/websocket", ws_h, []}
+                ]}
     ]),
-    gate_cb:init(),
-    persistent_term:put(my_app_dispatch, Dispatch),
-    ... ...
+    {ok, _} = cowboy:start_clear(my_http_listener,
+        [{port, 8080}],
+        #{env => #{dispatch => Dispatch}}
+    ),
+    chess_app_sup:start_link().
+
+stop(_State) ->
+	ok.
 ```

@@ -17,7 +17,7 @@ Use the same process **to create another script res://autoload/game_manager.gd**
 Browse our two scripts and set their names as shown below.
 
 **set scripts as autoload**
-<img src="/myblogs.github.io/2020/08/18/How_to_save_and_load_game_in_Godot_Engine/set-scripts-as-autoload.png">
+<img src="/myblogs.github.io/assets/set-scripts-as-autoload.png">
 
 To save and load game in Godot engine, we need to create some scripts. We will create this once and can be used in all of our game. So let us jump into scripting.
 

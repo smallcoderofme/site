@@ -52,6 +52,6 @@ if (g.Detector.webgl) {
 ```
 这里的小游戏场景，按钮，为了省事都以立方体cube代替。食物cube在场景随机产生，同时设置随机颜色。 在操作上，设定为在场景cube的6个面各有一个按钮cube，通过点击这6个按钮控制小蛇在空间的移动方向。为了方便观察，我们 设置食物cube，小蛇cube均有alpha = 0.4的透明度。
 效果图如下：
-<img src="/myblogs.github.io/2020/08/14/用threejs开发3D微信小游戏贪食蛇/threejs1.jpg">
-<img src="/myblogs.github.io/2020/08/14/用threejs开发3D微信小游戏贪食蛇/threejs2.jpg">
+<img src="/myblogs.github.io/assets/threejs1.jpg">
+<img src="/myblogs.github.io/assets/threejs2.jpg">
 需要改进：这里玩了几把，操作上需要不断的调整场景角度才能很好的操作小蛇，操作比较僵硬。暂时没有好的操作优化思路，暂时就到这吧，有空闲时间再研究。

@@ -33,7 +33,7 @@ tags:
 
 如您所知，用于在现代网站上构建页面的HTML，CSS和JavaScript文件可能非常庞大。在大多数情况下，Web服务器可以即时压缩这些和其他文本文件，以节省网络带宽。
 
-<img src="/myblogs.github.io/2020/08/17/通过修复NGINX配置帮助世界/rogalove-devtools-no-gzip.png">
+<img src="/myblogs.github.io/assets/rogalove-devtools-no-gzip.png">
 
 如您在左下方所见，没有压缩：文本文件的大小为1.15 MB，并且传输了很多数据。
 
@@ -50,7 +50,7 @@ gzip_min_length 500;
 
 如您在以下屏幕截图中所见，压缩后的数据传输量仅为260 KB ，减少了约80％！对于页面上的每个新用户，您可以节省大约917 KB的数据传输。对于我们的WooCommerce安装，每天62 MB，或每月1860 MB。
 
-<img src="/myblogs.github.io/2020/08/17/通过修复NGINX配置帮助世界/rogalove-devtools-gzip.png">
+<img src="/myblogs.github.io/assets/rogalove-devtools-gzip.png">
 
 ### 设置缓存头
 
@@ -73,7 +73,7 @@ HTTP / 2是用于服务网页的下一代协议，旨在更好地利用网络和
 listen 443 ssl http2;
 ```
 请注意，在大多数情况下，您还需要启用TLS才能使用HTTP / 2。 您可以通过HTTP2.Pro服务验证您（或任何站点）是否支持HTTP/2:
-<img src="/myblogs.github.io/2020/08/17/通过修复NGINX配置帮助世界/rogalove-http2-pro.png">
+<img src="/myblogs.github.io/assets/rogalove-http2-pro.png">
 
 ### 优化记录
 让自己喝一杯自己喜欢的饮料，舒适地坐着，然后思考：您上次查看访问日志文件是什么时候？上周，上个月，从来没有？即使将其用于站点的日常监视，您也可能只关注错误（400和500状态代码等），而不关注成功的请求。
