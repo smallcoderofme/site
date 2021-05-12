@@ -1,10 +1,10 @@
-hexo n "ÎÒµÄ²©¿Í" == hexo new "ÎÒµÄ²©¿Í" #ĞÂ½¨ÎÄÕÂ
-hexo g == hexo generate #Éú³É
-hexo s == hexo server #Æô¶¯·şÎñÔ¤ÀÀ
-hexo d == hexo deploy #²¿Êğ
+ï»¿hexo n "æˆ‘çš„åšå®¢" == hexo new "æˆ‘çš„åšå®¢" #æ–°å»ºæ–‡ç« 
+hexo g == hexo generate #ç”Ÿæˆ
+hexo s == hexo server #å¯åŠ¨æœåŠ¡é¢„è§ˆ
+hexo d == hexo deploy #éƒ¨ç½²
 
-hexo server #Hexo»á¼àÊÓÎÄ¼ş±ä¶¯²¢×Ô¶¯¸üĞÂ£¬ÎŞĞëÖØÆô·şÎñÆ÷
-hexo server -s #¾²Ì¬Ä£Ê½
-hexo server -p 5000 #¸ü¸Ä¶Ë¿Ú
-hexo server -i 192.168.1.1 #×Ô¶¨Òå IP
-hexo clean #Çå³ı»º´æ£¬ÈôÊÇÍøÒ³Õı³£Çé¿öÏÂ¿ÉÒÔºöÂÔÕâÌõÃüÁî
+hexo server #Hexoä¼šç›‘è§†æ–‡ä»¶å˜åŠ¨å¹¶è‡ªåŠ¨æ›´æ–°ï¼Œæ— é¡»é‡å¯æœåŠ¡å™¨
+hexo server -s #é™æ€æ¨¡å¼
+hexo server -p 5000 #æ›´æ”¹ç«¯å£
+hexo server -i 192.168.1.1 #è‡ªå®šä¹‰ IP
+hexo clean #æ¸…é™¤ç¼“å­˜ï¼Œè‹¥æ˜¯ç½‘é¡µæ­£å¸¸æƒ…å†µä¸‹å¯ä»¥å¿½ç•¥è¿™æ¡å‘½ä»¤

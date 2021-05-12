@@ -1,2 +1,3 @@
 hexo new page storyline // 使用cd定位到博客的路径
 hexo new page --path about/me "About me"
+hexo deploy 部署
